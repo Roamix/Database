@@ -5,7 +5,7 @@
 | Title Page         | ![todo] | ![todo]   | ![todo]   |
 | Description        | ![todo] | ![todo]   | ![todo]   |
 | ER Diagram         | ![done] | ![done]   | ![todo]   |
-| MySQL EER Diagram  | ![done] | ![todo]   | ![todo]   |
+| MySQL EER Diagram  | ![done] | ![done]   | ![todo]   |
 | Database Instance  | ![todo] | ![todo]   | ![todo]   |
 | SQL Updates        | ![todo] | ![todo]   | ![todo]   |
 | SQL Queries        | ![todo] | ![todo]   | ![todo]   |
