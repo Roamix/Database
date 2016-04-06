@@ -1,0 +1,70 @@
+\documentclass[12pt,oneside,a4paper]{article} 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{parskip}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{pifont}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{mathptmx}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\pagestyle{plain}
+
+% titlesec
+%\renewcommand\thechapter{\Roman{chapter}}
+%\renewcommand\thesection{\arabic{chapter}.\arabic{section}}
+%\renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
+%\titleformat{\chapter}[display]
+%  {\scshape\huge\bfseries}
+%  {\filleft{Part} \thechapter}
+%  {2ex}
+%  {\filright\Huge\normalfont\bfseries}
+
+% tikz
+%\usetikzlibrary{automata,positioning,arrows}
+
+% hyperref
+%\hypersetup{
+%	colorlinks=false,
+%	pdfborder={0 0 0},
+%	breaklinks=true
+%}
+%
+%\definecolor{R} {rgb} {.75,.15,.1}
+%\definecolor{G} {rgb} {.1,.75,.4}
+%\definecolor{B} {rgb} {.1,.3,.75}
+%\definecolor{Y} {rgb} {.75,.75,.1}
+%\definecolor{P} {rgb} {.5,.1,.75}
+%\definecolor{O} {rgb} {.8,0.45,0}
+
+%\graphicspath{./img/}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%
+%\newcommand{\cmark}{\ding{51}}%
+%\newcommand{\xmark}{\ding{55}}%
+%\newcommand{\specialcell}[2][c]{%
+%	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\begin{document}
+	\include{titlepage}
+    \setcounter{page}{2}
+	\tableofcontents
+	
+	\include{intro}
+	\include{design}
+	\include{implementation}
+    \include{conclusion}
+    
+    \appendix
+	% Include appendices (if any)
+    
+\end{document}
