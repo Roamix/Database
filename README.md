@@ -2,7 +2,7 @@
 
 | Requirement        | Started | Completed | Corrected |
 | ------------------ | ------- | --------- | --------- |
-| Title Page         | ![todo] | ![todo]   | ![todo]   |
+| Title Page         | ![done] | ![done]   | ![todo]   |
 | Description        | ![todo] | ![todo]   | ![todo]   |
 | ER Diagram         | ![done] | ![done]   | ![todo]   |
 | MySQL EER Diagram  | ![done] | ![done]   | ![todo]   |
