@@ -1,13 +1,33 @@
-\section{Implementation}
+\section{Implementation} \label{sec:implementation}
 % Tobias
 
 % Forward / Backward engineering
-
-% 
+When creating the database we used forward engineering to auto generate the 
+database from a MySQL EER diagram. The diagram can be seen in 
+Figure~\ref{fig:EER}. This had the advantage that the EER diagram could easily 
+be made as a translation of the ER Diagram described in 
+Section~\ref{sec:design}. This means that it was relatively easy to 
+implementation the database, in accordance with the design. We only had to make 
+sure that our translation from the ER diagram to the MySQL EER diagram was 
+correct to guarantee that the implemented database worked as desired. However, 
+this proved more difficult than expected. Because although it could be directly 
+translated, it did happen that the way we actually wanted to implement it, was 
+not strictly in accordance with the translation of the design. This sometimes 
+resulted in changes of the design, as we realized the design was not in 
+accordance with the desired functionality. Other times the desired effect was 
+achieved although not in accordance with the translation. This can be seen in 
+the relations \emph{from} and \emph{to} in which the entity \emph{Track} has 
+total participation. 
 
 
 \subsection{MySQL EER Diagram}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics{img/DTU-logo}
+    \caption{EER Diagram implemented in MySQL}
+    \label{fig:EER}
+\end{figure}
 
 
 \subsection{Functionality} % Other title?
