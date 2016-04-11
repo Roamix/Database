@@ -9,14 +9,12 @@
 \subsection{Requirements} % Maybe part of intro?
 % Functionality
 % Views
-We want our database to be compatible for storing train systems and planning routes. Therefore we want parts of our database relations to easily resemble graph structures. These "graph" relations are specifically 'Station', 'Route', 'Track', and 'RouteTracks'.\\
-That is, 'Station' can be seen as the relation containing vertices, and 'Track' containing the edges between vertices. 'RouteTracks' then contains a composition of tracks/edges to resemble a route that connects through different stations/vertices.\\[12pt]
-The other relations like 'Train', 'Employees' and 'Shift' are not really key parts of our database functionality, but are relations that should be included none the less.
+We want our database to be compatible for storing train systems and planning routes. Therefore we want parts of our database relations to easily resemble graph structures. These "graph" relations are specifically \emph{Station}, \emph{Route}, \emph{Track}, and \emph{RouteTracks}.\\
+That is, \emph{Station} can be seen as the relation containing vertices, and \emph{Track} containing the edges between vertices. \emph{RouteTracks} then contains a composition of tracks/edges to resemble a route that connects through different stations/vertices.\\[12pt]
+The other relations like \emph{Train}, \emph{Employees} and \emph{Shift} are not really key parts of our database functionality, but are relations that should be included none the less.
 
 \subsection{'Hand drawn' ER diagram}
-On figure 1 on the next page is shown our "Hand drawn" ER diagram, which 
-illustrates how we originally imagined the design of our 'Train Management' 
-schema.\\
+On figure 1 on the next page is shown our "Hand drawn" ER diagram, which illustrates how we originally imagined the design of our \emph{Train Management} schema.\\
 It shows how there is total participation between some of our "graph" relations, as you can not have tracks/edges exist without vertices (Station/City), neither can you have routes without tracks.
 
 
@@ -69,7 +67,7 @@ Finally, we can now insert routes that are composed of existing tracks.
     \label{fig:ER}
 \end{figure}
 
-When routes have been inserted it is necessary to have a relation containing which tracks each route is composed of. This is the 'RouteTracks' relation, which we will insert into now.
+When routes have been inserted it is necessary to have a relation containing which tracks each route is composed of. This is the \emph{RouteTracks} relation, which we will insert into now.
 
 \begin{figure}[ht!]
     \centering
@@ -98,7 +96,7 @@ There is of course employees driving and controlling these trains, so lets inser
     \label{fig:ER}
 \end{figure}
 
-An employee can have a workshift on a train, which is stored as a tuple in the 'Shift' relation.
+An employee can have a workshift on a train, which is stored as a tuple in the \emph{Shift} relation.
 
 \begin{figure}[ht!]
     \centering
@@ -108,7 +106,7 @@ An employee can have a workshift on a train, which is stored as a tuple in the '
 \end{figure}
 
 When deleting tuples or dropping relations, the total participation of the relations comes into play again, just like when inserting into the schema.\\
-In the 'Train Management' schema, the relations with total participation has been set to 'ON DELETE CASCADE'. So, if you were to delete a city which contained stations connected with tracks and routes, it would delete the routes, tracks and stations as well.\\
+In the \emph{Train Management} schema, the relations with total participation has been set to \emph{ON DELETE CASCADE}. So, if you were to delete a city which contained stations connected with tracks and routes, it would delete the routes, tracks and stations as well.\\
 
 \begin{figure}[ht!]
     \centering
@@ -117,7 +115,7 @@ In the 'Train Management' schema, the relations with total participation has bee
     \label{fig:ER}
 \end{figure}
 
-Not having the relations set to 'ON DELETE CASCADE', the relations would have to be deleted in the correct order, starting from the bottom of the above figure.
+Not having the relations set to \emph{ON DELETE CASCADE}, the relations would have to be deleted in the correct order, starting from the bottom of the above figure.
 \\[12pt]
 Updates do not cascade, as the primary keys and foreign keys of relations should never need to be changed/updated. ID's should always stay the same, so "should" city names and stations names. If a route were to have its start or stop station changed, we would simply insert a new route, rather than updating the old.\\
 There are still other attributes that are useful to update though, as seen in the examples below.
@@ -151,7 +149,7 @@ For example, if Station A has 2 lanes, which is equals to 4 tracks (For each lan
     \label{fig:ER}
 \end{figure}
 
-Lejre st has 2 lanes and already had 4 tracks connected (2 tracks for each connected city), so trying to connect a fifth resulted in an error from the Trigger which triggers 'BEFORE INSERT'.
+Lejre st has 2 lanes and already had 4 tracks connected (2 tracks for each connected city), so trying to connect a fifth resulted in an error from the Trigger which triggers \emph{BEFORE INSERT}.
 
 A couple of functions has also been implemented. These are primarily used to calculate dynamic attributes for the relations.\\
 This is used calculating the length of a route
@@ -210,7 +208,7 @@ The procedure adds a new city to the database, creates the main station for the 
 \end{figure}
 \newpage
 
-The only event, is really not a required functionality, as our 'Train Management' schema really has no need of events in its current state. 
+The only event, is really not a required functionality, as our \emph{Train Management} schema really has no need of events in its current state. 
 
 \begin{figure}[ht!]
     \centering
