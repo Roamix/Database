@@ -24,14 +24,14 @@ since we wanted to allow having multiple parallel tracks, we made the attribute
 key, from all three attributes, but this would have allowed for duplicate Ids, 
 which we were not interested in. We therefore kept the Id as the primary key, 
 and ensured the existence of \emph{from} and \emph{to} by disallowing them from 
-being \emph{null}.
+having the special value \emph{null}.
 
 \subsection{MySQL EER Diagram}
 
 As described above the EER diagram, seen in Figure~\ref{fig:EER}, was made from 
 the hand drawn Entity Relation Diagram show in Figure~\ref{fig:ER}.
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \includegraphics{img/EER.png}
     \caption{EER Diagram implemented in MySQL}
@@ -45,10 +45,68 @@ can be backward engineered into diagrams, which can be a great help, when
 trying to understand an existing database. In this project forward engineering 
 on the MySQL EER diagram was used to generate the SQL file shown in 
 Appendix~\ref{app:db}. This single file, when run, creates the entire database 
-exactly as described by the digram.
+exactly as described by the digram. However, the database is empty and has no 
+functionality. The population and common manipulation of the database is 
+described Section~\ref{sec:imp:func}
+
+\subsection{Normalization}
+% Include this section if the database does not conform to the 3'rd normal form
+% Section describes how 3'rd normal form was achieved
+This section deals with the normalization of all tables in the database. In 
+particular whether it is in conformance with the first, second, and third 
+normal forms, and if not, how the normalizations were achieved. It is important 
+to note that the normalisations were obtained throughout the process and not as 
+a single step near the end. The steps towards each normalisation may therefore 
+not have taken part in order, and some normalisations were performed on early 
+stages of the database, that are not covered in this report, as changes 
+happened rapidly. 
+
+\subsubsection{First Normal Form}
+For at table to be in first normal form, the following is required:
+\begin{itemize}
+    \item Each cell in the table has a single value, i.e., elements are atomic!
+    \item All entries in a column have values from the same domain
+    \item Each column has a unique name
+    \item Each row has a unique Primary Key
+    \item The order of the rows does not matter
+    \item The order of the columns does not matter
+    \item A single attribute must not be sequenced into multiple columns
+\end{itemize}
+All but the last one are taken care of by MySQL, as it is not possible to 
+generate a table that does not obey by the first five rules. However, it is 
+entirely up to the database engineers to ensure the last requirement is upheld. 
+And from looking at the EER diagram, it might seem that the foreign keys 
+\emph{start} and \emph{stop} in the entity \emph{Route}, might violate the 
+restriction, and thus that the table is not even normalized to the first normal 
+form. However, although the two attributes are much alike, they are not an 
+sequence of the same attribute. As matter of fact such a sequence does exist, 
+but is stored through the \emph{Track} and \emph{RouteTracks} \todo{Change to 
+RouteTrack}relations, exactly to ensure the table conforms to the first normal 
+form. 
+
+\subsubsection{Second Normal Form}
+For a table to be in second normal form, it must be in first normal form and 
+every single one of its non primary key attributes must depend on the primary 
+key. This seems trivial as without even without putting any effort into it, our 
+database was in the second normal form. This is because when generating the 
+database it seems natural to only associate attributes within the entities, 
+they belong to, working this way the attributes more or less automatically 
+depend on the primary key (assuming the primary key is selected reasonably). 
+
+\subsubsection{Third Normal Form}
+For a table to be in third normal form, it must be in second normal form and 
+there cannot be any transitive attribute dependencies. That is to say that even 
+though two attributes both depend on the primary key, if one can be derived 
+from the other, the table is not in third normal form. This was initially the 
+case as the employees originally had both a \emph{city} and a \emph{zip code} 
+associated with them, as part of their address. Clearly both depends on the 
+person, as they describes (part of) his address. But one can be derived from 
+the other, so in order to obtain the third normal form the \emph{City} entity 
+was created, so that each pair of zip codes and city names would only be stored 
+once.
 
 
-\subsection{Functionality} % Other title?
+\subsection{Functionality} \label{sec:imp:func} % Other title?
 
 % Specs require: Functions, procedures, transactions, triggers and events
 % Make sure to include all of these in the design or possibly in the intro
