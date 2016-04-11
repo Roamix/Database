@@ -2,10 +2,20 @@
 % Christoffer
 
 % Introduction to train management:
+The database system of this project is a train management schema, which stores trains, stations, tracks, routes, employees, etc. So a railway system that connects cities and stations is what we are modelling with our 'Train Management' scheme.\\
+This report will go through process of designing the database system, implementing it, the programming, and using it.\\[12pt]
+The functionality of this databse system is to store important stuff about a railway system, like routes and tracks between cities and stations. With the relations in this 'Train Management' scheme it is possible to plan a route from, for example, station A to station B and calculate the shortest route to reach the destination.\\ However, these more advanced algorithms, \textit{"Breadth-first search"} and \textit{"Dijkstra's Shortest Path"}, to plan routes and calculate shortest paths, are not implemented or stored as procedures in this schema, as they are tough to implement with our current SQL programming knowledge.
+The 'Train Management' schema is however compatible with the implementation of these algorithm. So by using the correct queries on the relations it is definitely possible to retrieve the required information that these algorithms need, and they could then be implemented in another DBMS like ODBC or JDBC.\\[12pt]
+Database type*
 % What is the purpose? 
+	%Describe part of real world to be modelled
 % What is this report about?
 % What functionality do we want?
+	%Be able to have cities and stations be connected by routes and tracks, and store it in our database?
+	%Be able to plan routes?
 % What are the limitations, i.e. is there something we are not goint to include?
+	%Complicated graph algorithms to calculate 		shortest routes etc. are not implemented
+	%Could have used BFS and Dijkstra's to make a routeplanning stored procedure.
 
 % What sort of database is it? 
 % (Production, Transaction, Fulltext, Temporal or Data Warehouse database)
