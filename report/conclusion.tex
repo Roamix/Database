@@ -9,8 +9,21 @@ management. We did this by first designing the database as en Entity Relation
 diagram. Once the diagram was finished it was translated into the MySQL EER 
 diagram. However, at this point we realised flaws in the initial design, and an 
 iterative process thereby began. One entity or relation was translated possibly 
-redesigned translated again. Only once we were satisfied we moved on to the 
-next relation/entity
+redesigned translated again. Only once we were satisfied, we moved on to the 
+next relation/entity. This gave a nice workflow as each aspect of the database 
+was considered in turn.
+
 % Does the implementation follow the design (YES - generated from "sketch")
 % Where does it not? Why?
+After the design (ER diagram) had been translated to the EER diagram, the 
+database could be forward engineered. This had the huge advantage that 
+implementation automatically becomes very much like the design, assuming the 
+translation did not change too much. By very little effort the ``sketch'' of a 
+database was made into an actual database, at which point we could start 
+programming functionality.
+
 % Comments on work -process, -flow, and possibly -distribution
+% Mentioned briefly above
+
+% Future expansions?
+

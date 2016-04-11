@@ -9,13 +9,19 @@
 \subsection{Requirements} % Maybe part of intro?
 % Functionality
 % Views
-We want our database to be compatible for storing train systems and planning routes. Therefore we want parts of our database relations to easily resemble graph structures. These "graph" relations are specifically \emph{Station}, \emph{Route}, \emph{Track}, and \emph{RouteTracks}.\\
+We want our database to be compatible for storing train systems and planning 
+routes. Therefore we want parts of our database relations to easily resemble 
+graph structures. These ``graph'' relations are specifically \emph{Station}, 
+\emph{Route}, \emph{Track}, and \emph{RouteTracks}.\\
 That is, \emph{Station} can be seen as the relation containing vertices, and \emph{Track} containing the edges between vertices. \emph{RouteTracks} then contains a composition of tracks/edges to resemble a route that connects through different stations/vertices.\\[12pt]
 The other relations like \emph{Train}, \emph{Employees} and \emph{Shift} are not really key parts of our database functionality, but are relations that should be included none the less.
 
-\subsection{'Hand drawn' ER diagram}
-On figure 1 on the next page is shown our "Hand drawn" ER diagram, which illustrates how we originally imagined the design of our \emph{Train Management} schema.\\
-It shows how there is total participation between some of our "graph" relations, as you can not have tracks/edges exist without vertices (Station/City), neither can you have routes without tracks.
+\subsection{ER diagram}
+On figure 1 on the next page is shown our ER diagram, which illustrates how we 
+originally imagined the design of our \emph{Train Management} schema.\\
+It shows how there is total participation between some of our ``graph'' 
+relations, as you can not have tracks (edges) without stations or cities 
+(vertices), neither can you have routes without tracks.
 
 
 \newpage
@@ -37,7 +43,6 @@ An example of inserting cities, would be done by statements like the following:
     \centering
     \includegraphics[width=.6\textwidth]{img/INSERT_Statements}
     \caption{SQL INSERT statements for City}
-    \label{fig:ER}
 \end{figure}
 
 It is now possible to insert stations located in the existing cities
@@ -46,7 +51,6 @@ It is now possible to insert stations located in the existing cities
     \centering
     \includegraphics[width=1\textwidth]{img/INSERT_Statement_Station}
     \caption{SQL INSERT statements for Station}
-    \label{fig:ER}
 \end{figure}
 
 and then connect these stations with tracks.
@@ -55,7 +59,6 @@ and then connect these stations with tracks.
     \centering
     \includegraphics[width=1\textwidth]{img/INSERT_Statements_Track}
     \caption{SQL INSERT statements for Track}
-    \label{fig:ER}
 \end{figure}
 
 Finally, we can now insert routes that are composed of existing tracks.
@@ -64,7 +67,6 @@ Finally, we can now insert routes that are composed of existing tracks.
     \centering
     \includegraphics[width=.6\textwidth]{img/INSERT_Statements_Route}
     \caption{SQL INSERT statements for Route}
-    \label{fig:ER}
 \end{figure}
 
 When routes have been inserted it is necessary to have a relation containing which tracks each route is composed of. This is the \emph{RouteTracks} relation, which we will insert into now.
@@ -73,7 +75,6 @@ When routes have been inserted it is necessary to have a relation containing whi
     \centering
     \includegraphics[width=.5\textwidth]{img/INSERT_Statements_RouteTracks}
     \caption{SQL INSERT statements for RouteTracks}
-    \label{fig:ER}
 \end{figure}
 
 We are now interested in having trains driving on these existing routes.
@@ -82,7 +83,6 @@ We are now interested in having trains driving on these existing routes.
     \centering
     \includegraphics[width=.5\textwidth]{img/INSERT_Statements_Train}
     \caption{SQL INSERT statements for Train}
-    \label{fig:ER}
 \end{figure}
 
 However, a train does not have to be on a route. Say, it could be at the workshop, but it is still an existing train.
@@ -93,7 +93,6 @@ There is of course employees driving and controlling these trains, so lets inser
     \centering
     \includegraphics[width=1\textwidth]{img/INSERT_Statements_Employee}
     \caption{SQL INSERT statements for Employee}
-    \label{fig:ER}
 \end{figure}
 
 An employee can have a workshift on a train, which is stored as a tuple in the \emph{Shift} relation.
@@ -102,7 +101,6 @@ An employee can have a workshift on a train, which is stored as a tuple in the \
     \centering
     \includegraphics[width=.9\textwidth]{img/INSERT_Statements_Shift}
     \caption{SQL INSERT statements for Shift}
-    \label{fig:ER}
 \end{figure}
 
 When deleting tuples or dropping relations, the total participation of the relations comes into play again, just like when inserting into the schema.\\
@@ -112,19 +110,21 @@ In the \emph{Train Management} schema, the relations with total participation ha
     \centering
     \includegraphics[width=1\textwidth]{img/DELETE_Statements}
     \caption{SQL DELETE statements}
-    \label{fig:ER}
 \end{figure}
 
 Not having the relations set to \emph{ON DELETE CASCADE}, the relations would have to be deleted in the correct order, starting from the bottom of the above figure.
 \\[12pt]
-Updates do not cascade, as the primary keys and foreign keys of relations should never need to be changed/updated. ID's should always stay the same, so "should" city names and stations names. If a route were to have its start or stop station changed, we would simply insert a new route, rather than updating the old.\\
+Updates do not cascade, as the primary keys and foreign keys of relations 
+should never need to be changed/updated. ID's should always stay the same, so 
+``should'' city names and stations names. If a route were to have its start or 
+stop station changed, we would simply insert a new route, rather than updating 
+the old.\\
 There are still other attributes that are useful to update though, as seen in the examples below.
 
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=1\textwidth]{img/UPDATE_Statements}
     \caption{SQL UPDATE statements}
-    \label{fig:ER}
 \end{figure}
 \newpage
 
@@ -137,7 +137,6 @@ Each station has a specific capacity, that is amount of lanes. And, to make sure
     \centering
     \includegraphics[width=1\textwidth]{img/SQL_TRIGGER}
     \caption{SQL Trigger}
-    \label{fig:ER}
 \end{figure}
 
 For example, if Station A has 2 lanes, which is equals to 4 tracks (For each lane there is 1 ingoing track and 1 outgoing), then the trigger would throw an error 1644, and prevent insertion of connecting a fifth track to Station A.
@@ -146,7 +145,6 @@ For example, if Station A has 2 lanes, which is equals to 4 tracks (For each lan
     \centering
     \includegraphics[width=1\textwidth]{img/SQL_TRIGGER_example}
     \caption{SQL Trigger example}
-    \label{fig:ER}
 \end{figure}
 
 Lejre st has 2 lanes and already had 4 tracks connected (2 tracks for each connected city), so trying to connect a fifth resulted in an error from the Trigger which triggers \emph{BEFORE INSERT}.
@@ -158,7 +156,6 @@ This is used calculating the length of a route
     \centering
     \includegraphics[width=1\textwidth]{img/SQL_FUNCTION_Length}
     \caption{SQL Function for Track Length}
-    \label{fig:ER}
 \end{figure}
 \newpage
 
@@ -168,7 +165,6 @@ A function for calculating the age of a train.
     \centering
     \includegraphics[width=1\textwidth]{img/SQL_FUNCTION_Age}
     \caption{SQL Function for Train Age}
-    \label{fig:ER}
 \end{figure}
 
 Next up is the implemented procedures. Some of the procedures only reads from the tables, while other procedures also performs data manipulation.
@@ -177,14 +173,12 @@ Next up is the implemented procedures. Some of the procedures only reads from th
     \centering
     \includegraphics[width=1\textwidth]{img/SQL_PROCEDURE_Neighbours}
     \caption{SQL Procedure for finding Station neighbours}
-    \label{fig:ER}
 \end{figure}
 
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=1\textwidth]{img/SQL_PROCEDURE_ConnectParallel}
     \caption{SQL Procedure for connecting stations parallel both ways}
-    \label{fig:ER}
 \end{figure}
 
 The procedure inputs 0 to the ID's of the tracks, because our ID's automatically increments from the newest ID.
@@ -195,7 +189,6 @@ In this last procedure, a transaction has been included. This is to make sure, t
     \centering
     \includegraphics[width=1\textwidth]{img/SQL_PROCEDURE_AddCityConnect}
     \caption{SQL Procedure for connecting new city to target city}
-    \label{fig:ER}
 \end{figure}
 
 The procedure adds a new city to the database, creates the main station for the city, and connects it to the specified existing target city, with a specified distance, by adding tracks between them.
@@ -204,7 +197,6 @@ The procedure adds a new city to the database, creates the main station for the 
     \centering
     \includegraphics[width=1\textwidth]{img/SQL_PROCEDURE_AddCityConnect_example}
     \caption{Before and after the above procedure}
-    \label{fig:ER}
 \end{figure}
 \newpage
 
@@ -214,7 +206,6 @@ The only event, is really not a required functionality, as our \emph{Train Manag
     \centering
     \includegraphics[width=1\textwidth]{img/SQL_EVENT}
     \caption{SQL Event for finding todays employees}
-    \label{fig:ER}
 \end{figure}
 
 This event tells who's at work everyday.
