@@ -6,6 +6,7 @@
 \usepackage{parskip}
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{listings}
 \usepackage{color}
 \usepackage{pifont}
 \usepackage{setspace}
@@ -16,6 +17,17 @@
 \usepackage{titlesec}
 \usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
 \usepackage[hidelinks]{hyperref}
+
+\lstset{
+    % frame=single, 
+    language=sql, 
+    basicstyle=\footnotesize,
+    numbers=left, 
+    numberstyle=\tiny\color{darkgray}, 
+    keywordstyle=\color{blue}, 
+    commentstyle=\color{gray},
+    otherkeywords={IF, SCHEMA, USE, REFERENCES, AUTO_INCREMENT, DATETIME}
+}
 
 \pagestyle{plain}
 
@@ -33,6 +45,8 @@
     \include{conclusion}
     
     \appendix
-	% Include appendices (if any)
+    \include{db}
+	%\include{SQL_data_manipulation}
+    %\include{SQL_programming}
     
 \end{document}

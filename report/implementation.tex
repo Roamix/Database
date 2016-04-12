@@ -31,13 +31,6 @@ having the special value \emph{null}.
 As described above the EER diagram, seen in Figure~\ref{fig:EER}, was made from 
 the hand drawn Entity Relation Diagram show in Figure~\ref{fig:ER}.
 
-\begin{figure}
-    \centering
-    \includegraphics{img/EER.png}
-    \caption{EER Diagram implemented in MySQL}
-    \label{fig:EER}
-\end{figure}
-
 Although the EER diagram only is a model and not a database itself. The diagram 
 representation is so precise a description of the database, that the database 
 can be created from it (known as forward engineering). Likewise the databases 
@@ -48,6 +41,13 @@ Appendix~\ref{app:db}. This single file, when run, creates the entire database
 exactly as described by the digram. However, the database is empty and has no 
 functionality. The population and common manipulation of the database is 
 described in Section~\ref{sec:prog}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/EER.png}
+    \caption{EER Diagram implemented in MySQL}
+    \label{fig:EER}
+\end{figure}
 
 \subsection{Normalization}
 % Include this section if the database does not conform to the 3'rd normal form
