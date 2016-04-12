@@ -2,13 +2,13 @@
 Tobias:
 
 Code:
-Insert test data (at least 2 routes, can overlap, 1 could just be 3 stations and the other a bit longer)
-Graph over stations
+Insert test data (at least 2 routes, can overlap, 1 could just be 3 stations and the other a bit longer) 
+Graph over stations 
 Views / SQl Queries
 normalization
 
 Report:
-(analysis.tex)
+(analysis.tex) Nomralization moved to implementation.tex
 implementation.tex
 conclusion.tex
 
@@ -24,3 +24,15 @@ Report:
 introduction.tex
 ER diagram in Visio / Paint
 design.tex
+
+
+ER diagram:
+Remove foreign keys
+Relation between Track and Station (Tertiary perhaps? / Station to Route)
+optional middle name for Employee
+Delete on cascade does not work!
+Functions:
+	Route.Length()
+
+	
+	
