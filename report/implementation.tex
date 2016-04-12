@@ -47,7 +47,7 @@ on the MySQL EER diagram was used to generate the SQL file shown in
 Appendix~\ref{app:db}. This single file, when run, creates the entire database 
 exactly as described by the digram. However, the database is empty and has no 
 functionality. The population and common manipulation of the database is 
-described Section~\ref{sec:imp:func}
+described in Section~\ref{sec:prog}
 
 \subsection{Normalization}
 % Include this section if the database does not conform to the 3'rd normal form
@@ -80,9 +80,8 @@ And from looking at the EER diagram, it might seem that the foreign keys
 restriction, and thus that the table is not even normalized to the first normal 
 form. However, although the two attributes are much alike, they are not an 
 sequence of the same attribute. As matter of fact such a sequence does exist, 
-but is stored through the \emph{Track} and \emph{RouteTracks} \todo{Change to 
-RouteTrack}relations, exactly to ensure the table conforms to the first normal 
-form. 
+but is stored through the \emph{Track} and \emph{RouteTrack} relations, exactly 
+to ensure the table conforms to the first normal form. 
 
 \subsubsection{Second Normal Form}
 For a table to be in second normal form, it must be in first normal form and 
@@ -105,8 +104,3 @@ the other, so in order to obtain the third normal form the \emph{City} entity
 was created, so that each pair of zip codes and city names would only be stored 
 once.
 
-
-\subsection{Functionality} \label{sec:imp:func} % Other title?
-
-% Specs require: Functions, procedures, transactions, triggers and events
-% Make sure to include all of these in the design or possibly in the intro
