@@ -1,15 +1,20 @@
 \section{Database programming}\label{sec:prog}
 This section deals with populating the database, updating and deleting existing 
-entries, and finally some SQL programming.
+entries, and finally some SQL programming. Section~\ref{sec:manipulate} deals 
+with the CRUD operations and is based on the file \verb|DataManipulation.sql| 
+which can be seen in Appendix~\ref{app:data}. The SQL programming is covered in 
+Section~\ref{sec:sql:programming} and is based on the file 
+\verb|Programming.sql|, which can be seen in Appendix~\ref{app:prog}.
 
-\subsection{SQL Data Manipulation}
+\subsection{SQL Data Manipulation} \label{sec:manipulate}
 When inserting into the empty schema, it is necessary to insert cities as the 
 first thing. Next is stations, followed by tracks, routes, trains, employees, 
 etc. This is because of the relations and their total participation in each 
-other. For example, a track can not exist without having a station in each 
+other. For example, a track cannot exist without having a station in each 
 end.
 Also, when inserting data into a relation, the values of the insert statement 
-of course has to correspond with the relation design on our ER diagram.\\
+of course has to correspond with the relation design on our ER diagram.
+
 An example of inserting cities, would be done by statements like the following:
 
 \begin{figure}[ht!]
@@ -172,7 +177,7 @@ the view is recomputed.
 \end{figure}
 
 \newpage
-\subsection{SQL Programming}
+\subsection{SQL Programming} \label{sec:sql:programming}
 To control the data integrity and make insertion easier and less trivial or 
 calculating attributes, a couple of functions, triggers, procedures, 
 transactions and events have been programmed and implemented.

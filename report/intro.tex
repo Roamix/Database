@@ -7,24 +7,38 @@ trains, stations, tracks, routes, employees, etc. So a railway system that
 connects cities and stations is what we are modelling with our \emph{Train 
 Management} schema.
 
-This report will go through process of designing the database system, 
-implementing it, the programming, and using it.
-The functionality of this databse system is to store important stuff about a 
-railway system, like routes and tracks between cities and stations. With the 
-relations in this \emph{Train Management} scheme it is possible to plan a route 
-from, for example, station A to station B and calculate the shortest route to 
-reach the destination.However, these more advanced algorithms, 
+This report will go through the process of designing a database, implementing 
+it, and extend its functionality by programming functions, triggers etc.
+The function of the databse system is to store important information about a 
+railway system, such as routes and tracks between cities and stations. With the 
+relations in the \emph{Train Management} schema, it is possible to plan a route 
+from station $A$ to station $B$ and calculate the shortest route to 
+reach the destination. However, these more advanced algorithms, 
 \textit{"Breadth-first search"} and \textit{"Dijkstra's Shortest Path"}, to 
 plan routes and calculate shortest paths, are not implemented or stored as 
-procedures in this schema, as they are tough to implement with our current SQL 
-programming knowledge.
-The \emph{Train Management} schema is however compatible with the 
-implementation of these algorithm. So by using the correct queries on the 
-relations it is definitely possible to retrieve the required information that 
-these algorithms need, and they could then be implemented in another DBMS like 
-ODBC or JDBC.
+procedures in this schema, as such algorithms are more conveniently implemented 
+in objective programming languages. But it would of course be possible to 
+implement either of these in any DBMS, such as ODBC or JDBC.
 
-Database type* % <- What is this?
+%However that is not say that it would not be possible The \emph{Train 
+%Management} schema is however, compatible with the 
+%implementation of these algorithm. So by using the correct queries on the 
+%relations it is definitely possible to retrieve the required information that 
+%these algorithms need, and they could then be implemented in another DBMS like 
+%ODBC or JDBC.
+
+Furthermore the problem of finding shortest paths seem redundant to find the 
+shortest paths for routes as it is not necessarily the shortest paths that are 
+most conveniently made into routes, as the network of routes should make it as 
+fast as possible to get from a station to another, regardless of where you are 
+moving from and to. This problem is easily solved by having routes between 
+every pair of stations. However, that is a very cost inefficient solution, as 
+it requires $O(n^2)$ routes. Where $n$ is the number of stations. Since we need 
+trains on all routes, this quickly becomes a very expensive solution. 
+
+
+
+%Database type* % <- What is this?
 
 
 % What is the purpose? 
