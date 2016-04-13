@@ -39,7 +39,9 @@ trying to understand an existing database. In this project forward engineering
 on the MySQL EER diagram was used to generate the SQL file shown in 
 Appendix~\ref{app:db}. This single file, when run, creates the entire database 
 exactly as described by the digram. However, the database is empty and has no 
-functionality. The population and common manipulation of the database is 
+functionality. There is one thing, that could not be easily transferred from the hand drawn ER diagram to the MySQL EER Diagram. And that is the total participation between \emph{Route} and \emph{RouteTracks}, as described in the design section. There is no innate way to detect if \emph{Route} has any tracks stored in \emph{RouteTracks}. So implementing the total participation relationship would result in lackluster and suboptimal solutions.
+
+The population and common manipulation of the database is 
 described in Section~\ref{sec:prog}
 
 \begin{figure}
@@ -78,7 +80,7 @@ entirely up to the database engineers to ensure the last requirement is upheld.
 And from looking at the EER diagram, it might seem that the foreign keys 
 \emph{start} and \emph{stop} in the entity \emph{Route}, might violate the 
 restriction, and thus that the table is not even normalized to the first normal 
-form. However, although the two attributes are much alike, they are not an 
+form. However, although the two attributes are much alike, they are not a 
 sequence of the same attribute. As matter of fact such a sequence does exist, 
 but is stored through the \emph{Track} and \emph{RouteTrack} relations, exactly 
 to ensure the table conforms to the first normal form. 

@@ -171,6 +171,7 @@ the view is recomputed.
     \label{fig:route}
 \end{figure}
 
+\newpage
 \subsection{SQL Programming}
 To control the data integrity and make insertion easier and less trivial or 
 calculating attributes, a couple of functions, triggers, procedures, 
@@ -223,7 +224,7 @@ the tables, while other procedures also performs data manipulation.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=1\textwidth]{img/SQL_PROCEDURE_Neighbours}
+    \includegraphics[width=.7\textwidth]{img/SQL_PROCEDURE_Neighbours}
     \caption{SQL Procedure for finding Station neighbours}
 \end{figure}
 
@@ -236,6 +237,7 @@ the tables, while other procedures also performs data manipulation.
 The procedure inputs 0 to the ID's of the tracks, because our ID's 
 automatically increments from the newest ID.
 
+\newpage
 In this last procedure, a transaction has been included. This is to make sure, 
 that the city and station do not get inserted unless it is possible to connect 
 it to the targeted station.
@@ -253,9 +255,12 @@ distance, by adding tracks between them.
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=1\textwidth]{img/SQL_PROCEDURE_AddCityConnect_example}
-    \caption{Before and after the above procedure}
+    \caption{Example: Before and after the above procedure}
 \end{figure}
 
+From the example above, the method above clear makes it quicker to insert and connect to an existing station, while still being able to specify the length of the tracks.
+
+\newpage
 The only event, is really not a required functionality, as our \emph{Train 
 Management} schema really has no need of events in its current state. 
 
