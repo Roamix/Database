@@ -49,6 +49,7 @@ INSERT Employee VALUES("CH", "Christoffer", "Hjort", NULL, "Sandbanken", 2, 4320
 INSERT Employee VALUES("TSP", "Tobias", "Petersen", "Skovlund", "Nybrovej", 304, 2800, "Train Operator");
 INSERT Shift VALUES("CH", 1, '2016-04-14 09:00:00', '2016-04-14  17:00:00');
 INSERT Shift VALUES("TSP", 1, '2016-04-14 08:00:00', '2016-04-14  16:00:00');
+
 ############UPDATE STATEMENTS###################
 UPDATE Station SET Lanes = 3 WHERE StationName = "Hvalsø st";
 UPDATE Track SET Length = 9 WHERE id = 1;
