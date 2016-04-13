@@ -129,8 +129,7 @@ Figure~\ref{fig:length}.
     \end{subfigure}
     \begin{subfigure}[b]{0.45 \textwidth}
         \centering
-        PLACEHOLDER
-%        \includegraphics{img/RouteLengthsView}
+        \includegraphics{img/RouteLengthsView}
         \caption{Selecting everything from the view}
     \end{subfigure}
     \caption{View for finding the lengths of all routes}
@@ -146,20 +145,26 @@ station. We instead chose to select both and thus have a table of tracks
 (defined by pairs of stations), rather than stations. An example of this can be 
 seen in Figure~\ref{fig:route}. Here the result is ordered by the attribute 
 \emph{Number} which assures the tracks are listed in proper order (assuming of 
-course that these numbers have been set properly).
+course that these numbers have been set properly). These two views can be used 
+as if they were tables in further SQL statements. This can for instance be used 
+to naturally join the view \emph{RouteLengths} with the table \emph{Routes}, 
+thus adding a column with the routes length to the \emph{Routes} table. The 
+column is of course only added in the result of the query and not actually 
+added to the table, as that would be undesirable. This means that if a track on 
+the a route changes length, then so does the length of the route, as long as 
+the view is recomputed.
 
 
 \begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.45 \textwidth}
         \centering
-        \includegraphics[width=\textwidth]{img/RouteTwo}
+        \includegraphics[width=\textwidth]{img/TracksOnRoute}
         \caption{Implementation of the view}
     \end{subfigure}
     \begin{subfigure}[b]{0.45 \textwidth}
         \centering
-        PLACEHOLDER
-        %        \includegraphics{img/RouteLengthsView}
+        \includegraphics{img/RouteView}
         \caption{Selecting everything from the view}
     \end{subfigure}
     \caption{View of all tracks on route 2}

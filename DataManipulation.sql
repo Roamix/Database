@@ -42,7 +42,7 @@ INSERT Track VALUES(3, 10, "Hvalsø st", "Lejre st"), (4, 10, "Lejre st", "Hvals
 INSERT Track VALUES(5, 3, "Roskilde st", "Roskilde udkants st"), (6, 3, "Roskilde udkants st", "Roskilde st");
 INSERT Route VALUES(1, "Hvalsø st", "Roskilde st");
 INSERT Route VALUES(2, "Roskilde udkants st", "Lejre Station");
-INSERT RouteTrack VALUES(1,1,1), (3,1,2);
+INSERT RouteTrack VALUES (3,1,1), (1,1,2);
 INSERT RouteTrack VALUES(6,2,1), (2,2,2), (4,2,3), (3,2,4);
 INSERT Train VALUES(0001, "IC400", 2006, 1);
 INSERT Employee VALUES("CH", "Christoffer", "Hjort", NULL, "Sandbanken", 2, 4320, "Train Operator");
@@ -57,32 +57,19 @@ UPDATE Employee SET Job = "Conductor" WHERE Initials = "CH";
 UPDATE Shift SET ShiftEnd = '2016-04-10 19:00:00' WHERE ShiftEnd = '2016-04-14 17:00:00';
 
 DROP VIEW IF EXISTS RouteLengths;
-
 # Gives the total length of a route
 CREATE VIEW RouteLengths AS
 SELECT RouteTrack.Route_Id, SUM(Length) AS TotalLength 
 FROM RouteTrack JOIN Track 
 WHERE RouteTrack.Track_Id = Track.Id
 GROUP BY RouteTrack.Route_Id;
-
-DROP VIEW IF EXISTS RouteOne;
-# Gives all tracks in Route with id=1
-CREATE VIEW RouteOne AS
-SELECT FromStation, ToStation
-FROM RouteTrack JOIN Track
-WHERE Route_Id = 1
-AND Track_Id = Track.Id
-ORDER BY Number;
-
-DROP VIEW IF EXISTS RouteTwo;
-# Gives all tracks in Route with id=2
-CREATE VIEW RouteTwo AS
-SELECT FromStation, ToStation
-FROM RouteTrack JOIN Track
-WHERE Route_Id = 2
-AND Track_Id = Track.Id
-ORDER BY Number;
-
 SELECT * FROM RouteLengths;
-SELECT * FROM RouteOne;
-SELECT * FROM RouteTwo;
+
+DROP VIEW IF EXISTS TracksOnRoute;
+# Gives all tracks in all routes, ordered.
+CREATE VIEW TracksOnRoute AS
+SELECT Route_Id AS Id, FromStation, ToStation
+FROM RouteTrack JOIN Track
+WHERE Track_Id = Track.Id
+ORDER BY Route_Id, Number;
+SELECT * FROM TracksOnRoute;

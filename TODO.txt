@@ -30,7 +30,6 @@ ER diagram:
 Remove foreign keys
 Relation between Track and Station (Tertiary perhaps? / Station to Route)
 optional middle name for Employee
-Delete on cascade does not work!
 Functions:
 	Route.Length()
 

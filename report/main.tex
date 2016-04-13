@@ -1,6 +1,7 @@
 \documentclass[12pt,oneside,a4paper]{article} 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+%\usepackage[danish]{babel}
 \usepackage{subcaption}
 \usepackage[T1]{fontenc}
 \usepackage{parskip}
@@ -26,7 +27,19 @@
     numberstyle=\tiny\color{darkgray}, 
     keywordstyle=\color{blue}, 
     commentstyle=\color{gray},
-    otherkeywords={IF, SCHEMA, USE, REFERENCES, AUTO_INCREMENT, DATETIME}
+    morecomment=[l]{\#},
+    stringstyle=\color{brown},
+    morestring=[bd]{'},
+    otherkeywords={IF, SCHEMA, USE, REFERENCES, AUTO_INCREMENT, DATETIME},
+    literate=
+    {æ}{{\ae}}1
+    {å}{{\aa}}1
+    {ø}{{\o}}1
+    {Æ}{{\AE}}1
+    {Å}{{\AA}}1
+    {Ø}{{\O}}1,
+    extendedchars=\true,
+    inputencoding=ansinew
 }
 
 \pagestyle{plain}
@@ -45,8 +58,6 @@
     \include{conclusion}
     
     \appendix
-    \include{db}
-	%\include{SQL_data_manipulation}
-    %\include{SQL_programming}
+    \include{appendices}
     
 \end{document}
