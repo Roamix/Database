@@ -2,23 +2,30 @@
 
 USE TrainManagement;
 
-#TRIGGER THAT THROWS ERROR IF TRYING TO INSERT MORE TRACKS TO A STATION THAN THE STATION HAS CAPACITY
+# Trigger that throw an error if trying to insert more
+# tracks on a station thatn the station's capacity.
 DELIMITER $$
 CREATE TRIGGER capacityCheck
 BEFORE INSERT ON Track FOR EACH ROW
 BEGIN
 	DECLARE errorText TEXT;
 	IF (SELECT Lanes FROM Station WHERE StationName = New.FromStation)
-		<= (SELECT count(Id)/2 FROM Track WHERE FromStation = New.FromStation OR ToStation = New.FromStation)
+		<= (SELECT count(Id)/2 FROM Track 
+            WHERE FromStation = New.FromStation OR ToStation = New.FromStation)
     THEN
-		SET errorText = CONCAT((SELECT StationName FROM Station WHERE StationName = New.FromStation), " can not have any more tracks");
+		SET errorText = CONCAT((SELECT StationName FROM Station 
+                                WHERE StationName = New.FromStation), 
+                                " can not have any more tracks");
         SIGNAL SQLSTATE '45000'SET MESSAGE_TEXT = errorText;
     END IF;
     
     IF (SELECT Lanes FROM Station WHERE StationName = New.ToStation)
-		<= (SELECT count(Id)/2 FROM Track WHERE FromStation = New.ToStation OR ToStation = New.ToStation)
+		<= (SELECT count(Id)/2 FROM Track 
+            WHERE FromStation = New.ToStation OR ToStation = New.ToStation)
     THEN
-		SET errorText = CONCAT((SELECT StationName FROM Station WHERE StationName = New.ToStation), " can not have any more tracks");
+		SET errorText = CONCAT((SELECT StationName FROM Station 
+                                WHERE StationName = New.ToStation), 
+                                " can not have any more tracks");
         SIGNAL SQLSTATE '45000'SET MESSAGE_TEXT = errorText;
     END IF;
     
@@ -27,34 +34,36 @@ DELIMITER ;
 
 
 # This function exists merely to illustrate how it can be done,
-# but its functinality is covered by the View 'RouteLengths'
-#FUNCTION THAT CALCULATES AND RETURNS LENGTH OF A ROUTE
+# but its functinality is covered by the View 'RouteLengths'.
+# Function that calculates the length of a route.
 DELIMITER $$
 CREATE FUNCTION routeLength (routeId INT)
 RETURNS INT
 BEGIN
 	DECLARE len INT;
-    SET len = (SELECT Sum(Length) FROM Track WHERE Id IN (SELECT Track_Id FROM RouteTrack, Route WHERE Route_Id = Route.Id));
+    SET len = (SELECT Sum(Length) FROM Track WHERE Id IN 
+              (SELECT Track_Id FROM RouteTrack, Route WHERE Route_Id = Route.Id));
 	RETURN len;
 END;$$
 DELIMITER ;
 SELECT routeLength(2);
 
 
-#FUNCTION AGE OF TRAIN
+# Function that calculate the age of a train.
 DELIMITER $$
 CREATE FUNCTION TrainAge (trainID INT)
 RETURNS INT
 BEGIN
 	DECLARE age INT;
-    SET age = YEAR(curdate()) - (SELECT ProductionYear FROM Train WHERE id = trainID);
+    SET age = YEAR(curdate()) - 
+             (SELECT ProductionYear FROM Train WHERE id = trainID);
 	RETURN age;
 END;$$
 DELIMITER ;
 SELECT TrainAge(1);
 
 
-#PROCEDURE Neighbours of Station
+# Procedure that finds the neighbours of Station
 DELIMITER $$
 CREATE PROCEDURE StationNeighbours (IN vStationName VARCHAR(25))
 BEGIN
@@ -63,8 +72,8 @@ END;$$
 DELIMITER ;
 CALL StationNeighbours("Roskilde st");
 
-# does not work due to ids
-#PROCEDURE CONNECT STATIONS PARALLEL
+# Procedure that connects two stations by two tracks,
+# one in each direction
 DELIMITER $$
 CREATE PROCEDURE ConnectStationsParallel
 (IN vStationName1 VARCHAR(25), IN vStationName2 VARCHAR(25), IN vDistance INT)
@@ -76,10 +85,16 @@ DELIMITER ;
 CALL ConnectStationsParallel("Roskilde udkants st", "Hvalsø st", 10);
 
 
-#PROCEDURE WITH TRANSACTION #Add new City and Connect to City. Adds main station of new city as well.
+# Procedure that adds a new city and connects it to 
+# an existing city, by calling ConnectStationsParallel.
 DELIMITER $$
 CREATE PROCEDURE AddCityConnectTo
-(IN vCityName VARCHAR(45), IN vZip INT, IN vLanes INT, IN vDistance INT, IN vTargetName VARCHAR(45), OUT vStatus TEXT)
+   (IN vCityName VARCHAR(45), 
+    IN vZip INT, 
+    IN vLanes INT, 
+    IN vDistance INT, 
+    IN vTargetName VARCHAR(45), 
+    OUT vStatus TEXT)
 #Add City with vCityName, Zip and Lanes = vLanes with vDistance to vTargetName
 BEGIN
     DECLARE CityStationName TEXT;
@@ -114,7 +129,9 @@ DELIMITER $$
 CREATE PROCEDURE EmployeesOnDate
 (IN vDate DATE)
 BEGIN
-    SELECT * FROM Employee WHERE Initials IN (SELECT Employee_Initials FROM Shift WHERE ShiftStart LIKE CONCAT(vDate,'%'));
+    SELECT * FROM Employee WHERE Initials IN 
+    (SELECT Employee_Initials FROM Shift 
+        WHERE ShiftStart LIKE CONCAT(vDate,'%'));
 END;$$
 DELIMITER ;
 

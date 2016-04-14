@@ -33,5 +33,4 @@ optional middle name for Employee
 Functions:
 	Route.Length()
 
-Retake screenshot of EER diagram
 	

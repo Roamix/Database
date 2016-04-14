@@ -194,7 +194,8 @@ USE `TrainManagement` ;
 -- -----------------------------------------------------
 -- Placeholder table for view `TrainManagement`.`RouteView`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `TrainManagement`.`RouteView` (`Id` INT, `StartStation` INT, `EndStation` INT);
+CREATE TABLE IF NOT EXISTS `TrainManagement`.`RouteView` 
+    (`Id` INT, `StartStation` INT, `EndStation` INT);
 
 -- -----------------------------------------------------
 -- View `TrainManagement`.`RouteView`
@@ -202,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `TrainManagement`.`RouteView` (`Id` INT, `StartStatio
 DROP VIEW IF EXISTS `TrainManagement`.`RouteView` ;
 DROP TABLE IF EXISTS `TrainManagement`.`RouteView`;
 USE `TrainManagement`;
-CREATE  OR REPLACE VIEW `RouteView` AS
+CREATE OR REPLACE VIEW `RouteView` AS
     SELECT 
         Id, StartStation, EndStation
     FROM
