@@ -123,8 +123,7 @@ DELIMITER ;
 CALL AddCityConnectTo("Ringsted", 4100, 5, 13, "Roskilde", @vStatus);
 SELECT @vStatus;
 
-
-#PROCEDURE THAT FIND EVERY EMPLOYEE WORKING ON SPECIFIED DAY
+# Procedure that finds all employees working a specific day
 DELIMITER $$
 CREATE PROCEDURE EmployeesOnDate
 (IN vDate DATE)
@@ -136,7 +135,7 @@ END;$$
 DELIMITER ;
 
 
-#EVENT EVERY DAY, CALLS EmployeesOnDate
+# Event that occurs every day, calls 'EmployeesOnDate'
 SET GLOBAL event_scheduler = 1;
 SHOW VARIABLES LIKE 'event_scheduler';
 

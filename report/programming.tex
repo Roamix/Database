@@ -15,27 +15,41 @@ end.
 Also, when inserting data into a relation, the values of the insert statement 
 of course has to correspond with the relation design on our ER diagram.
 
-An example of inserting cities, would be done by statements like the following:
+An example of inserting cities, can  be seen in Figure~\ref{fig:ins:city}.
+
+
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=.6\textwidth]{img/INSERT_Statements}
+%    \lstset{numbers=none}
+%    \begin{lstlisting}
+%#Single insert statement
+%INSERT City VALUES(4000, "Roskilde");
+%#Multiple insert statements
+%INSERT City VALUES
+%(4320, "Lejre"), 
+%(4330, "Hvalsø");
+%    \end{lstlisting}
+    \includegraphics[scale=.5]{img/INSERT_Statements}
     \caption{SQL INSERT statements for City}
+    \label{fig:ins:city}
 \end{figure}
 
-It is now possible to insert stations located in the existing cities
+Once our database contains cities it is possible to insert stations located in 
+the these cities, which can be done as shown in Figure~\ref{fig:ins:station}
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=1\textwidth]{img/INSERT_Statement_Station}
+    \includegraphics[scale=.5]{img/INSERT_Statement_Station}
     \caption{SQL INSERT statements for Station}
+    \label{fig:ins:station}
 \end{figure}
 
 and then connect these stations with tracks.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=1\textwidth]{img/INSERT_Statements_Track}
+    \includegraphics[scale=.5]{img/INSERT_Statements_Track}
     \caption{SQL INSERT statements for Track}
 \end{figure}
 
@@ -43,7 +57,7 @@ Finally, we can now insert routes that are composed of existing tracks.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=.6\textwidth]{img/INSERT_Statements_Route}
+    \includegraphics[scale=.5]{img/INSERT_Statements_Route}
     \caption{SQL INSERT statements for Route}
 \end{figure}
 
@@ -53,7 +67,7 @@ relation, which we will insert into now.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=.5\textwidth]{img/INSERT_Statements_RouteTracks}
+    \includegraphics[scale=.5]{img/INSERT_Statements_RouteTrack}
     \caption{SQL INSERT statements for RouteTracks}
 \end{figure}
 
@@ -61,7 +75,7 @@ We are now interested in having trains driving on these existing routes.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=.5\textwidth]{img/INSERT_Statements_Train}
+    \includegraphics[scale=.5]{img/INSERT_Statements_Train}
     \caption{SQL INSERT statements for Train}
 \end{figure}
 
@@ -73,7 +87,7 @@ insert some employees
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=1\textwidth]{img/INSERT_Statements_Employee}
+    \includegraphics[scale=.5]{img/INSERT_Statements_Employee}
     \caption{SQL INSERT statements for Employee}
 \end{figure}
 
@@ -82,7 +96,7 @@ An employee can have a workshift on a train, which is stored as a tuple in the
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=.9\textwidth]{img/INSERT_Statements_Shift}
+    \includegraphics[scale=.5]{img/INSERT_Statements_Shift}
     \caption{SQL INSERT statements for Shift}
 \end{figure}
 
@@ -176,7 +190,6 @@ the view is recomputed.
     \label{fig:route}
 \end{figure}
 
-\newpage
 \subsection{SQL Programming} \label{sec:sql:programming}
 To control the data integrity and make insertion easier and less trivial or 
 calculating attributes, a couple of functions, triggers, procedures, 

@@ -34,7 +34,7 @@ DELETE FROM Employee; #Cascade delete Shift;
 ############INSERT STATEMENTS###################
 #Single insert statement
 INSERT City VALUES(4000, "Roskilde");
-#Multiple insert statement
+#Multiple insert statements
 INSERT City VALUES
     (4320, "Lejre"), 
     (4330, "Hvalsø");
@@ -53,8 +53,7 @@ INSERT Track VALUES
     (5, 3, "Roskilde st", "Roskilde udkants st"), 
     (6, 3, "Roskilde udkants st", "Roskilde st");
 INSERT Route VALUES
-    (1, "Hvalsø st", "Roskilde st");
-INSERT Route VALUES
+    (1, "Hvalsø st", "Roskilde st"),
     (2, "Roskilde udkants st", "Lejre Station");
 INSERT RouteTrack VALUES 
     (3,1,1), 
@@ -77,7 +76,6 @@ INSERT Shift VALUES
 UPDATE Station SET Lanes = 3 WHERE StationName = "Hvalsø st";
 UPDATE Track SET Length = 9 WHERE id = 1;
 UPDATE Employee SET Job = "Conductor" WHERE Initials = "CH";
-
 UPDATE Shift SET ShiftEnd = '2016-04-10 19:00:00' 
     WHERE ShiftEnd = '2016-04-14 17:00:00';
 
