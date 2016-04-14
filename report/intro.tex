@@ -27,8 +27,7 @@ implement either of these in any DBMS, such as ODBC or JDBC.
 %these algorithms need, and they could then be implemented in another DBMS like 
 %ODBC or JDBC.
 
-Furthermore the problem of finding shortest paths seem redundant to find the 
-shortest paths for routes as it is not necessarily the shortest paths that are 
+Furthermore the problem of finding shortest paths seem redundant for routes as it is not necessarily the shortest paths that are 
 most conveniently made into routes, as the network of routes should make it as 
 fast as possible to get from a station to another, regardless of where you are 
 moving from and to. This problem is easily solved by having routes between 
@@ -36,9 +35,8 @@ every pair of stations. However, that is a very cost inefficient solution, as
 it requires $O(n^2)$ routes. Where $n$ is the number of stations. Since we need 
 trains on all routes, this quickly becomes a very expensive solution. 
 
-
-
-%Database type* % <- What is this?
+%Database type
+The database is then categorised as an Information Database, that provides information about train systems and train routes. From the database it is possible to extract important information about how the railway system is mapped and routed, and it is in compliance with possible graph algorithms.
 
 
 % What is the purpose? 

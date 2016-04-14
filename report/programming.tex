@@ -67,7 +67,7 @@ relation, which we will insert into now.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[scale=.5]{img/INSERT_Statements_RouteTrack}
+    \includegraphics[scale=.5]{img/INSERT_Statements_RouteTracks}
     \caption{SQL INSERT statements for RouteTracks}
 \end{figure}
 
@@ -114,15 +114,14 @@ routes, tracks and stations as well.\\
 \end{figure}
 
 Not having the relations set to \emph{ON DELETE CASCADE}, the relations would 
-have to be deleted in the correct order, starting from the bottom of the above 
-figure.
+have to be deleted in the correct order, starting from the bottom of Figure~11.
 Updates do not cascade, as the primary keys and foreign keys of relations 
 should never need to be changed/updated. ID's should always stay the same, so 
 ``should'' city names and stations names. If a route were to have its start or 
 stop station changed, we would simply insert a new route, rather than updating 
 the old.
 There are still other attributes that are useful to update though, as seen in 
-the examples below.
+the examples on Figure~12.
 
 \begin{figure}[ht!]
     \centering
@@ -130,12 +129,12 @@ the examples below.
     \caption{SQL UPDATE statements}
 \end{figure}
 
-Some of the informations that should be retrieval according to the design, 
+Some of the informations that should be retrievable according to the design, 
 turned out to not be convenient to model directly, as for instance the length 
 of a route. The entity \emph{Route} could have had an attribute with the length 
-of the entire route, but this would be compromising the normalisations as the 
+of the entire route, but this would be compromising the normalizations as the 
 value should be calculated as the sum of lengths of all the tracks on the 
-route. We therefore created the a view, that shows the length of all the 
+route. We therefore created a view, that shows the length of all the 
 tracks. The view, together with its implementation, can be seen in 
 Figure~\ref{fig:length}.
 
@@ -163,8 +162,8 @@ all the tracks on the route, we would be missing either the first or the last
 station. We instead chose to select both and thus have a table of tracks 
 (defined by pairs of stations), rather than stations. An example of this can be 
 seen in Figure~\ref{fig:route}. Here the result is ordered by the attribute 
-\emph{Number} which assures the tracks are listed in proper order (assuming of 
-course that these numbers have been set properly). These two views can be used 
+\emph{Id} which assures the tracks are listed in proper order (assuming of 
+course that these numbers have been set properly). In case of ties, the result will be ordered by \emph{Number}. These two views can be used 
 as if they were tables in further SQL statements. This can for instance be used 
 to naturally join the view \emph{RouteLengths} with the table \emph{Routes}, 
 thus adding a column with the routes length to the \emph{Routes} table. The 
