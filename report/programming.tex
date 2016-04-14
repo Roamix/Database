@@ -19,7 +19,7 @@ An example of inserting cities, can  be seen in Figure~\ref{fig:ins:city}.
 
 
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
 %    \lstset{numbers=none}
 %    \begin{lstlisting}
@@ -38,7 +38,7 @@ An example of inserting cities, can  be seen in Figure~\ref{fig:ins:city}.
 Once our database contains cities it is possible to insert stations located in 
 these cities, which can be done as shown in Figure~\ref{fig:ins:station}.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.5]{img/INSERT_Statement_Station}
     \caption{SQL INSERT statements for \emph{Station}.}
@@ -48,7 +48,7 @@ these cities, which can be done as shown in Figure~\ref{fig:ins:station}.
 We can then connect the stations via tracks, effectively giving us a railway 
 system, see Figure~\ref{fig:ins:track}.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.5]{img/INSERT_Statements_Track}
     \caption{SQL INSERT statements for \emph{Track}.}
@@ -58,7 +58,7 @@ system, see Figure~\ref{fig:ins:track}.
 With the network of tracks connecting stations, we can now create routes that 
 are composed of tracks. This is done in Figure~\ref{fig:ins:route}.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.5]{img/INSERT_Statements_Route}
     \caption{SQL INSERT statements for \emph{Route}}
@@ -70,7 +70,7 @@ are not done with the routes, as we still have to know which tracks each route
 is composed of. This is where the \emph{RouteTrack} relation comes in. The 
 \emph{RouteTrack} table is populated in Figure~\ref{fig:ins:routetrack}.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.5]{img/INSERT_Statements_RouteTrack}
     \caption{SQL INSERT statements for \emph{RouteTrack}.}
@@ -80,7 +80,7 @@ is composed of. This is where the \emph{RouteTrack} relation comes in. The
 We are now interested in having trains that drive on the tracks, following the 
 routes. A train is inserted in Figure~\ref{fig:ins:train}
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.5]{img/INSERT_Statements_Train}
     \caption{SQL INSERT statements for \emph{Train}.}
@@ -93,7 +93,7 @@ workshop, but it is still an existing train.\todo{Move to design.}
 There should of course be employees driving, maintaining, and controlling the 
 trains, so we also populate the \emph{Employee} table.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.5]{img/INSERT_Statements_Employee}
     \caption{SQL INSERT statements for \emph{Employee}.}
@@ -103,7 +103,7 @@ trains, so we also populate the \emph{Employee} table.
 An employee will have shifts on trains, describing when the employee is working 
 on each train. A shift is stored as a tuple in the \emph{Shift} relation.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.5]{img/INSERT_Statements_Shift}
     \caption{SQL INSERT statements for \emph{Shift}.}
@@ -120,7 +120,7 @@ connected through tracks and may be used as start- or end-station for a routes,
 in which case these gets deleted as well. The cascade on delete option thereby 
 ripples down the database, erasing all rows that become invalid.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.5]{img/DELETE_Statements}
     \caption{SQL DELETE statements.}
@@ -141,7 +141,7 @@ into separate tables), there will never be a need for cascading after updating
 a non primary key attribute. Common update operations can be seen in 
 Figure~\ref{fig:update}.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.5]{img/UPDATE_Statements}
     \caption{SQL UPDATE statements.}
@@ -216,7 +216,7 @@ Each station has a specific capacity, that is amount of lanes. And, to make
 sure that no more tracks are connected to a station than there is capacity for, 
 a trigger has been implemented to prevent insertion.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.75]{img/SQL_TRIGGER}
     \caption{SQL Trigger.}
@@ -229,7 +229,7 @@ a fifth track is attempted, then the trigger will throw an error 1644, and
 prevent insertion of the track. The implementation of the trigger can be seen 
 in Figure~\ref{fig:trigger}
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{img/SQL_TRIGGER_example}
     \caption{SQL Trigger disabling insertion.}
@@ -251,7 +251,7 @@ finds the length of a single route (id supplied as a parameter), whereas the
 view gives the length of all routes (from which the length of a single route 
 can of course be obtained).
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.75]{img/SQL_FUNCTION_Length}
     \caption{SQL Function for Track Length}
@@ -264,7 +264,7 @@ for the value to always to accurate. This is achieved through the function
 shown in Figure~\ref{fig:age}, which simply subtracts the production year of 
 the train from the current year. 
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.75]{img/SQL_FUNCTION_Age}
     \caption{SQL Function for Train Age}
@@ -277,57 +277,59 @@ data manipulations. The procedure in Figure~\ref{fig:neighbors} finds all the
 stations neighbouring the given station. Where neighbouring is defined as; 
 directly connected through a single track.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.75]{img/SQL_PROCEDURE_Neighbours}
     \caption{SQL Procedure for finding Station neighbours}
     \label{fig:neighbors}
 \end{figure}
 
-\begin{figure}[ht!]
+The procedure in Figure~\ref{fig:connectstation} connects two stations a track 
+going in each direction. When the tracks are inserted, the dummy value 0 is 
+used as the IDs of the tracks. It is a dummy value because the track ID's 
+automatically increment, so the supplied value does not matter. 
+
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.75]{img/SQL_PROCEDURE_ConnectParallel}
     \caption{SQL Procedure for connecting stations parallel both ways}
     \label{fig:connectstation}
 \end{figure}
 
-The procedure inputs 0 to the ID's of the tracks, because our ID's 
-automatically increments from the newest ID.
+The final procedure, shown in Figure~\ref{fig:connectcity}, creates a city, 
+adds a station to the city, and connects the station to the station in another 
+city. The procedure includes a transaction. This is to make sure, that the city 
+and station do not get inserted unless it is possible to connect 
+it to the targeted station. This method clearly makes it quicker to insert and 
+connect to an existing station, while still being able to specify the length of 
+the tracks. The effect of using this procedure on a smple database can be seen 
+in Figure~\ref{fig:effect}.
 
-In this last procedure, a transaction has been included. This is to make sure, 
-that the city and station do not get inserted unless it is possible to connect 
-it to the targeted station.
-
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.75]{img/SQL_PROCEDURE_AddCityConnect}
     \caption{SQL Procedure for connecting new city to target city.}
     \label{fig:connectcity}
 \end{figure}
 
-The procedure adds a new city to the database, creates the main station for the 
-city, and connects it to the specified existing target city, with a specified 
-distance, by adding tracks between them.
-
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.75]{img/SQL_PROCEDURE_AddCityConnect_example}
     \caption{Effect of \emph{AddCityConnectTo} on database instance.}
 \end{figure}
 \label{fig:effect}
 
-From the example above, the method above clear makes it quicker to insert and connect to an existing station, while still being able to specify the length of the tracks.
-
 The only event, is really not a required functionality, as our \emph{Train 
-Management} schema really has no need of events in its current state. 
+Management} schema does not have any crucial need for an event in its current 
+state. But to illustrate the effect of an event we have implemented an event 
+that finds out who is at work on the current date, see Figure~\ref{fig:event} 
+for the implementation. The implemented event, is more for general managing, as 
+it is nice to know for each day of the week which employees are at work.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
     \centering
     \includegraphics[scale=.75]{img/SQL_EVENT}
-    \caption{SQL Event for finding todays employees}
+    \caption{SQL Event for finding todays employees.}
     \label{fig:event}
 \end{figure}
 
-This event tells who is at work everyday.
-The implemented event, is more for general managing, as it is nice to know for 
-each day of the week what employees are at work.
