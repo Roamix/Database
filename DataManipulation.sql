@@ -40,7 +40,7 @@ INSERT City VALUES
     (4330, "Hvalsø");
 INSERT Station VALUES
     ("Roskilde st", 6, 4000), 
-    ("Roskilde udkants st", 1, 4000), 
+    ("Roskilde udkants st", 2, 4000), 
     ("Lejre st", 2, 4320), 
     ("Hvalsø st", 2, 4330);
 INSERT Track VALUES
