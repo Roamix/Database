@@ -51,7 +51,7 @@ Some of the most essential functionalities we want our database to have is
 \item Compatibility for depth search algorithms and shortest routes algorithms.
 \end{itemize}
 
-Fortunately, simple views can be used to easily find the length of a route and its stations. These views are describes in the implementation section. So is a trigger that helps with data integrity of station lanes, by preventing illegal inserts. The compatibility for applying graph algorithms is achieved with the design of our relations, shown on the ER diagram below.
+Fortunately, simple views can be used to easily find the length of a route and its stations. These views are describes in the implementation section. So is a trigger that helps with data integrity of station lanes, by preventing illegal inserts. The compatibility for applying graph algorithms is achieved with the design of our relations, shown on the ER diagram Figure~\ref{fig:ER}.
 
 \subsection{ER diagram}
 Figure~\ref{fig:ER} shows our ER diagram, which illustrates the design of our 
@@ -72,9 +72,8 @@ without stations or cities, neither can you have routes without tracks.
 
 % Comments on ER diagram supporting the requirements
 The relations \emph{Station} and \emph{Track} are purposely designed to resemble "graph" relations as described in the requirements. This enables the possible implementation of graph-algorithms, with \emph{Stations} being nodes/vertices and \emph{Track} as edges.
-\\[12pt]
-Further functionalities and advancements could have been done in the form of including timestamps and time as a general factor for route-planning etc. Due to the scale of the project and keeping it realistically achievable at the same time, it has been decided to not include time in any form, other than the workshift start and end times.\\
+
+Further functionalities and advancements could have been done in the form of including timestamps and time as a general factor for route-planning etc. Due to the scale of the project and keeping it realistically achievable at the same time, it has been decided to not include time in any form, other than the workshift start and end times. We considered letting the \emph{RouteTracks} relation have its own attribute called StopAt, which would specify which stations a route would stop at and when. However, for simplicity we decided to just have a route stop at every station on its path instead.\\
 The ER diagram shows total participation between \emph{Route} and 
 \emph{RouteTracks}. This however is really tricky to have implemented in the 
-SQL Schema. In fact it is not implemented in the current schema. This is 
-discussed in the implementation section.
+SQL Schema. In fact it is not implemented in the current schema. This is discussed in the implementation section.
